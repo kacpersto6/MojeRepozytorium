@@ -4,13 +4,27 @@
         $data = $_POST["data"];
         $sedzia = $_POST["sedzia"];
 
-        $conn = new mysqli("localhost","root","","wedkarstwo");
+        // Połączenie z bazą danych
+        $conn = new mysqli("localhost", "root", "", "wedkarstwo");
 
-        $sql = "INSERT INTO zawody_wedkarskie VALUES (NULL, 2, $lowisko, '$data', '$sedzia');";
-        $result = $conn->query($sql);
+        // Sprawdzenie, czy połączenie powiodło się
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-        $conn -> close();
+        // Przygotowanie zapytania SQL
+        $stmt = $conn->prepare("INSERT INTO zawody_wedkarskie (id, id_organizatora, lowisko, data, sedzia) VALUES (NULL, 2, ?, ?, ?)");
+        $stmt->bind_param("iss", $lowisko, $data, $sedzia); // 's' dla stringów, 'i' dla integerów
 
-        echo "Zawody wędkarskie zostały dodane";
+        // Wykonanie zapytania
+        if ($stmt->execute()) {
+            echo "Zawody wędkarskie zostały dodane";
+        } else {
+            echo "Błąd: " . $stmt->error;
+        }
+
+        // Zamykanie połączenia
+        $stmt->close();
+        $conn->close();
     }
 ?>

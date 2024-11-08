@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Zawody wędkarskie</title>
-        <link rel="stylesheet" href="kod.css">
+        <link rel="stylesheet" href="styl3.css">
     </head>
     <body>
         <div id="lewy">
@@ -25,8 +25,14 @@
                 <li>Warta-Obrzycko</li>
             </ul>
             <h3>Dodaj zawody wędkarskie</h3>
-            <form action="kod.php" method="post">
-                <label for="lowisko">Łowisko:</label> <input type="number" name="lowisko" id="lowisko"><br>
+            <form action="zgloszenie.php" method="post">
+                <label for="lowisko">Łowisko:</label>
+                <select name="lowisko" id="lowisko">
+                    <option value="1">Zalew Węgrowski</option>
+                    <option value="2">Zbiornik Bukówka</option>
+                    <option value="3">Jeziorko Bartbetowskie</option>
+                    <option value="4">Warta-Obrzycko</option>
+                </select><br>
                 <label for="data">Data:</label> <input type="date" name="data" id="data"><br>
                 <label for="sedzia">Sędzia:</label> <input type="text" name="sedzia" id="sedzia"><br>
                 <button type="reset">CZYŚĆ</button>
