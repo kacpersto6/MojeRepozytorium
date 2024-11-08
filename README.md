@@ -1,1 +1,1 @@
-# MojeRepozytorium mg;ldjghdlhld
+Nauka githuba.
